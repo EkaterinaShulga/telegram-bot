@@ -1,0 +1,1 @@
+CREATE INDEX IF NOT EXISTS notice_id_index ON notice (id);
