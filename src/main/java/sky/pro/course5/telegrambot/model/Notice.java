@@ -5,10 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.util.Objects;
+
 
 @Entity(name = "notice")
 public class Notice {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -17,6 +18,12 @@ public class Notice {
     private LocalDateTime dateAndTimeSendNotice;
 
     public Notice() {
+    }
+
+    public Notice(String textNotice, long chatId, LocalDateTime dateAndTimeSendNotice) {
+        this.textNotice = textNotice;
+        this.chatId = chatId;
+        this.dateAndTimeSendNotice = dateAndTimeSendNotice;
     }
 
     public int getId() {
@@ -49,23 +56,6 @@ public class Notice {
 
     public void setTextNotice(String textNotice) {
         this.textNotice = textNotice;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Notice notice = (Notice) o;
-        return Objects.equals(id, notice.id) && Objects.equals(textNotice, notice.textNotice) &&
-                Objects.equals(chatId, notice.chatId) && Objects.equals(dateAndTimeSendNotice, notice.dateAndTimeSendNotice);
-
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, textNotice, chatId, dateAndTimeSendNotice);
     }
 
 }
