@@ -27,7 +27,7 @@ public class TelegramBotUpdatesListenerTest {
     @InjectMocks
     private TelegramBotUpdatesListener telegramBotUpdatesListener;
 
-    public TelegramBotUpdatesListenerTest(){
+    public TelegramBotUpdatesListenerTest() {
     }
 
     private Notice one;
@@ -36,13 +36,13 @@ public class TelegramBotUpdatesListenerTest {
     private List<Notice> greetingNotice;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         notices = new ArrayList<>();
         greetingNotice = new ArrayList<>();
-        one = new Notice( "Сдать курсовую" , 8437932L,
-                LocalDateTime.of(2022, Month.NOVEMBER, 21,16,30,00 ));
-        two = new Notice( "Подготовиться к собеседованию" , 8437932L,
-                LocalDateTime.of(2022, Month.DECEMBER, 21,10,15,00 ));
+        one = new Notice("Сдать курсовую", 8437932L,
+                LocalDateTime.of(2022, Month.NOVEMBER, 21, 16, 30, 00));
+        two = new Notice("Подготовиться к собеседованию", 8437932L,
+                LocalDateTime.of(2022, Month.DECEMBER, 21, 10, 15, 00));
         notices.add(one);
         notices.add(two);
         greetingNotice.add(one);
@@ -50,13 +50,13 @@ public class TelegramBotUpdatesListenerTest {
 
 
     @Test
-    public void getGreetingNotice(){
+    public void getGreetingNotice() {
         Mockito.when(this.noticeRepository.findNoticeByDateAndTime(notices)).thenReturn(greetingNotice);
         Assertions.assertEquals(greetingNotice, this.noticeRepository.findNoticeByDateAndTime(notices));
     }
 
     @Test
-    public void getAllNotices(){
+    public void getAllNotices() {
         Mockito.when(this.noticeRepository.findAll()).thenReturn(notices);
         Assertions.assertEquals(notices, this.noticeRepository.findAll());
     }
