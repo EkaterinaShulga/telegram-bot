@@ -47,28 +47,27 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             logger.info("Processing update: {}", update);
 
             TelegramBot bot = new TelegramBot(telegramBot.getToken());
+            if(update.message() != null){
             long chatId = update.message().chat().id();
             String messageText = "Привет, я бот.";
             SendMessage message = new SendMessage(chatId, messageText);
-
             String st = "/start";
-            for (Update up : updates) {
-                if (up.message().text().equals(st)) {
+                if (update.message().text().equals(st)) {
                     SendResponse response = bot.execute(message);
                     if (response.isOk()) {
                         System.out.println("Cообщение отправлено");
                     } else {
                         System.out.println("Сообщение не было отправлено, код ошибки " + response.errorCode());
-
                     }
-                } else if (!up.message().text().equals(st)) {
-                    createNotice(up);
-                }
+                } else if (!update.message().text().equals(st) && update.message() != null) {
+                    createNotice(update);
+           }
+        } else{
+                logger.warn("Что-то пошло не так");
             }
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
-
 
     public void createNotice(Update update) {
         TelegramBot bot = new TelegramBot(telegramBot.getToken());
@@ -109,17 +108,6 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             bot.execute(message);
         }
     }
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
