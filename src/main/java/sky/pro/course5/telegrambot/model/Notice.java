@@ -22,9 +22,10 @@ public class Notice {
 
     public Notice(String textNotice, long chatId, LocalDateTime dateAndTimeSendNotice) {
         this.textNotice = textNotice;
-       this.chatId = chatId;
-       this.dateAndTimeSendNotice = dateAndTimeSendNotice;
+        this.chatId = chatId;
+        this.dateAndTimeSendNotice = dateAndTimeSendNotice;
     }
+
     public int getId() {
         return id;
     }

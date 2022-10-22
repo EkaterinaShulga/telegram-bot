@@ -97,7 +97,6 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         }
     }
 
-
     @Scheduled(cron = "0 0/1 * * * *")
     public void sendNotice() {
         TelegramBot bot = new TelegramBot(telegramBot.getToken());

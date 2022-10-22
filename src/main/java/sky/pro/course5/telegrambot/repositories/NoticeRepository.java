@@ -24,7 +24,8 @@ public interface NoticeRepository extends JpaRepository<Notice, Integer> {
         }
         return allSuitableNotice;
 
-    }}
+    }
+}
 
 
 
